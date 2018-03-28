@@ -37,7 +37,7 @@ gulp.task("prettify-css", [], function() {
 gulp.task("lint", ["prettify-js"], function() {
 	gulp.src("./src/js/**/*.js")
 		.pipe(debug())
-		.pipe(eslint())
+		.pipe(eslint({"rules": {"no-useless-escape": 1}}))
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
 });
