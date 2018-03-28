@@ -9,8 +9,93 @@
 <body>
 <h1>Simple MDE Editor with default DesignLab options</h1>
 <textarea id="input"></textarea>
+<button onclick="loadDesignlabContent()">Load Designlab Sample Content</button>
 </body>
 <script>
     var simplemde = new SimpleMDE({ element: document.getElementById("input") });
+    var loadDesignlabContent = function () {
+        var content = "## Dropcap (in two column)\n" +
+            "dl-col-a\n" +
+            "dl-drop-cap\n" +
+            "Resupinus tanto exemplis inque, Pylios Arethusa quia; in Orphne, tibi mea. Illa\n" +
+            "quondam solus nostraque cruorem absentes nam, illis quod, armiger! Inter\n" +
+            "*removit in origo* cultrosque forma videbor utrimque domi aequore in tamen.\n" +
+            "Victi cupit [lumen nec quam](http://viso-ordine.net/adderetenues.html) ne time,\n" +
+            "hic qui.\n" +
+            "\n" +
+            "- Iuppiter nix aures\n" +
+            "- Sed Troiana esset\n" +
+            "- Et senumque inposito te ut remanet tenebrosa\n" +
+            "- Tutus Promethides cadunt faces incidit leonis demersit\n" +
+            "dl-drop-cap\n" +
+            "dl-col-a\n" +
+            "dl-col-b\n" +
+            "Resupinus tanto exemplis inque, Pylios Arethusa quia; in Orphne, tibi mea. Illa\n" +
+            "quondam solus nostraque cruorem absentes nam, illis quod, armiger! Inter\n" +
+            "*removit in origo* cultrosque forma videbor utrimque domi aequore in tamen.\n" +
+            "Victi cupit [lumen nec quam](http://viso-ordine.net/adderetenues.html) ne time,\n" +
+            "hic qui.\n" +
+            "\n" +
+            "- Iuppiter nix aures\n" +
+            "- Sed Troiana esset\n" +
+            "- Et senumque inposito te ut remanet tenebrosa\n" +
+            "- Tutus Promethides cadunt faces incidit leonis demersit\n" +
+            "dl-col-b\n" +
+            "\n" +
+            "---\n" +
+            "## Pull Quote with Image\n" +
+            "dl-profile-image http://via.placeholder.com/150x150\n" +
+            "dl-pull-quote\n" +
+            "This is the quote from this great person! Graias avitum. Nobis celeberrima voce humum. Relinque ulterius priameia dapes simili auspiciis nunc nulla quae quae, quae, sine *quae illi* minuendo corde.\n" +
+            "\n" +
+            "Sic, et. Ipse manusque; colla fumant in tantum accessisse lacu adhibet sanguine leves. Clamant inexorabile satis, est muneris numen, sensibus vacuas ultima aversa, et mediis et, et numero progeniem.\n" +
+            "***- John Doe***\n" +
+            "dl-pull-quote\n" +
+            "\n" +
+            "---\n" +
+            "\n" +
+            "## Pull Quote in a Two Column\n" +
+            "\n" +
+            "dl-col-a\n" +
+            "dl-pull-quote\n" +
+            "This is the quote from this great person! Graias avitum. Nobis celeberrima voce humum. Relinque ulterius priameia dapes simili auspiciis nunc nulla quae quae, quae, sine *quae illi* minuendo corde.\n" +
+            "***- John Doe***\n" +
+            "dl-pull-quote\n" +
+            "dl-col-a\n" +
+            "dl-col-b\n" +
+            "Col B Content Here.  You probably shouldn't include the `dl-profile-image` tag for these.\n" +
+            "Resupinus tanto exemplis inque, Pylios Arethusa quia; in Orphne, tibi mea. Illa\n" +
+            "quondam solus nostraque cruorem absentes nam, illis quod, armiger! Inter\n" +
+            "*removit in origo* cultrosque forma videbor utrimque domi aequore in tamen.\n" +
+            "Victi cupit [lumen nec quam](http://viso-ordine.net/adderetenues.html) ne time,\n" +
+            "hic qui.\n" +
+            "\n" +
+            "- Iuppiter nix aures\n" +
+            "- Sed Troiana esset\n" +
+            "- Et senumque inposito te ut remanet tenebrosa\n" +
+            "- Tutus Promethides cadunt faces incidit leonis demersit\n" +
+            "dl-col-b\n" +
+            "\n" +
+            "---\n" +
+            "\n" +
+            "## Image with a Caption\n" +
+            "dl-image-with-caption http://via.placeholder.com/300x150 Your Caption Here :beer: and it can contain **markdown**!\n" +
+            "\n" +
+            "---\n" +
+            "\n" +
+            "## Full width Image\n" +
+            "dl-image-full-width http://via.placeholder.com/1200x400\n" +
+            "\n" +
+            "---\n" +
+            "\n" +
+            "*Enjoy!*\n" +
+            "\\- CJ\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "\n"
+
+        simplemde.value(content);
+    }
 </script>
 </html>
