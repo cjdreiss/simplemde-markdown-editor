@@ -685,6 +685,88 @@ span.CodeMirror-selectedtext { background: none; }
 .CodeMirror .CodeMirror-placeholder {
     opacity: .5;
 }
+
+/* DesignLab Custom Elements, use these as a base starting point */
+
+.editor-preview .dl-col-a,
+.editor-preview-side .dl-col-a {
+    width: 35%;
+    display: inline-block;
+    border: 1px dashed rgba(255, 0, 0, .25);
+    vertical-align: top;
+}
+
+.editor-preview .dl-col-b,
+.editor-preview-side .dl-col-b {
+    width: 60%;
+    display: inline-block;
+    border: 1px dashed rgba(0, 0, 255, .25);
+    vertical-align: top;
+}
+
+.editor-preview .dl-profile-image-container,
+.editor-preview-side .dl-profile-image-container {
+    width: 35%;
+    display: inline-block;
+    border: 1px dashed rgba(0, 255, 0, .25);
+    vertical-align: top;
+}
+
+.editor-preview .dl-profile-image,
+.editor-preview-side .dl-profile-image {
+    border-radius: 50%;
+}
+
+.editor-preview .dl-pull-quote,
+.editor-preview-side .dl-pull-quote {
+    width: 60%;
+    display: inline-block;
+    border: 1px dashed rgba(255, 255, 255, .25);
+    vertical-align: top;
+}
+
+/* Force the dl-pull-quote to be full width when in our col */
+
+.editor-preview .dl-col-a .dl-pull-quote,
+.editor-preview-side .dl-col-a .dl-pull-quote,
+.editor-preview .dl-col-b .dl-pull-quote,
+.editor-preview-side .dl-col-b .dl-pull-quote {
+    width: 100%;
+    display: block;
+}
+
+.editor-preview .dl-image-with-caption-container,
+.editor-preview-side .dl-image-with-caption-container {
+    text-align: center;
+}
+
+.editor-preview .dl-image-with-caption,
+.editor-preview-side .dl-image-with-caption {
+    display: inline-block;
+}
+
+.editor-preview .dl-image-caption,
+.editor-preview-side .dl-image-caption {}
+
+.editor-preview .dl-drop-cap,
+.editor-preview-side .dl-drop-cap {
+    float: left;
+    width: 0.7em;
+    font-size: 400%;
+    line-height: 80%;
+}
+
+.editor-preview .dl-image-full-width-container,
+.editor-preview-side .dl-image-full-width-container {
+    width: 100%;
+    height: auto;
+}
+
+.editor-preview .dl-image-full-width,
+.editor-preview-side .dl-image-full-width {
+    width: 100%;
+    height: auto;
+}
 .CodeMirror .cm-spell-error:not(.cm-url):not(.cm-comment):not(.cm-tag):not(.cm-word) {
     background: rgba(255, 0, 0, .15);
 }

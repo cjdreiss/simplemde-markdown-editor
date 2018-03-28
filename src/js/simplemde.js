@@ -11,7 +11,9 @@ require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
 var CodeMirrorSpellChecker = require("codemirror-spell-checker");
-var marked = require("marked");
+// var marked = require("marked");
+var showdown = require("showdown");
+require("designlab-showdown-extensions");
 
 
 // Some variables
@@ -1553,42 +1555,14 @@ function SimpleMDE(options) {
  * Default markdown render.
  */
 SimpleMDE.prototype.markdown = function(text) {
-	if(marked) {
-		// Initialize
-		var markedOptions;
-		if(this.options && this.options.renderingConfig && this.options.renderingConfig.markedOptions) {
-			markedOptions = this.options.renderingConfig.markedOptions;
-		} else {
-			markedOptions = {};
-		}
-
-		// Update options
-		if(this.options && this.options.renderingConfig && this.options.renderingConfig.singleLineBreaks === false) {
-			markedOptions.breaks = false;
-		} else {
-			markedOptions.breaks = true;
-		}
-
-		if(this.options && this.options.renderingConfig && this.options.renderingConfig.codeSyntaxHighlighting === true) {
-
-			/* Get HLJS from config or window */
-			var hljs = this.options.renderingConfig.hljs || window.hljs;
-
-			/* Check if HLJS loaded */
-			if(hljs) {
-				markedOptions.highlight = function(code) {
-					return hljs.highlightAuto(code).value;
-				};
-			}
-		}
-
-
-		// Set options
-		marked.setOptions(markedOptions);
-
+	if(showdown) {
+		var showdown_converter = new showdown.Converter({
+			extensions: ["designlab"]
+		});
+		showdown_converter.setFlavor("github");
 
 		// Return
-		return marked(text);
+		return showdown_converter.makeHtml(text);
 	}
 };
 

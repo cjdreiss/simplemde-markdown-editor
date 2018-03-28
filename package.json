@@ -23,7 +23,9 @@
   "dependencies": {
     "codemirror": "*",
     "codemirror-spell-checker": "*",
-    "marked": "*"
+    "designlab-showdown-extensions": "^0.0.1",
+    "marked": "*",
+    "showdown": "^1.8.6"
   },
   "devDependencies": {
     "browserify": "*",
