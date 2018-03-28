@@ -211,7 +211,7 @@ function toggleFullScreen(editor) {
 
 
 	// Update toolbar button
-	if (editor.toolbarElements.fullscreen) {
+	if(editor.toolbarElements.fullscreen) {
 		var toolbarButton = editor.toolbarElements.fullscreen;
 
 		if(!/active/.test(toolbarButton.className)) {
@@ -790,6 +790,73 @@ function togglePreview(editor) {
 		toggleSideBySide(editor);
 }
 
+
+/**
+ * Action for drawing a DesignLab Two Column Layout
+ */
+function drawTwoCol(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.image, options.insertTexts.twoCol);
+}
+
+
+/**
+ * Action for drawing a DesignLab Profile Image Layout
+ */
+function drawProfileImage(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.image, options.insertTexts.profileImage);
+}
+
+
+/**
+ * Action for drawing a DesignLab Pull Quote Layout
+ */
+function drawPullQuote(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.image, options.insertTexts.pullQuote);
+}
+
+
+/**
+ * Action for drawing a DesignLab Drop Cap Layout
+ */
+function drawDropCap(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.image, options.insertTexts.dropCap);
+}
+
+
+/**
+ * Action for drawing a DesignLab Image with Caption Layout
+ */
+function drawImageWithCaption(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.image, options.insertTexts.imageWithCaption);
+}
+
+
+/**
+ * Action for drawing a DesignLab Full Width Image Layout
+ */
+function drawFullWidthImage(editor) {
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
+	_replaceSelection(cm, stat.image, options.insertTexts.fullWidthImage);
+}
+
+
 function _replaceSelection(cm, active, startEnd, url) {
 	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
 		return;
@@ -1272,6 +1339,51 @@ var toolbarBuiltInButtons = {
 		action: redo,
 		className: "fa fa-repeat no-disable",
 		title: "Redo"
+	},
+	"separator-6": {
+		name: "separator-6"
+	},
+	"two-col": {
+		name: "two-col",
+		action: drawTwoCol,
+		className: "fa fa-th-large no-disable",
+		title: "Two Columns",
+		default: true
+	},
+	"profile-image": {
+		name: "profile-image",
+		action: drawProfileImage,
+		className: "fa fa-user-circle-o no-disable",
+		title: "Profile Image",
+		default: true
+	},
+	"pull-quote": {
+		name: "pull-quote",
+		action: drawPullQuote,
+		className: "fa fa-quote-right no-disable",
+		title: "Pull Quote",
+		default: true
+	},
+	"drop-cap": {
+		name: "drop-cap",
+		action: drawDropCap,
+		className: "fa fa-text-height no-disable",
+		title: "Drop Cap",
+		default: true
+	},
+	"image-with-caption": {
+		name: "image-with-caption",
+		action: drawImageWithCaption,
+		className: "fa fa-file-text-o no-disable",
+		title: "Image with Caption",
+		default: true
+	},
+	"full-width-image": {
+		name: "full-width-image",
+		action: drawFullWidthImage,
+		className: "fa fa-window-maximize no-disable",
+		title: "Full Width Image",
+		default: true
 	}
 };
 
@@ -1281,6 +1393,20 @@ var insertTexts = {
 	table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
 	horizontalRule: ["", "\n\n-----\n\n"]
 };
+
+// DesignLab custom insertTexts
+// We include them directly in here so we don't need to pass this as options in multiple other projects
+var dlInsertTexts = {
+	twoCol: ["dl-col-a\n", "\ndl-col-a\ndl-col-b\nCol B Content Here\ndl-col-b\n"],
+	profileImage: ["dl-profile-image ", "https://link.to/your-image.png\n"],
+	pullQuote: ["dl-pull-quote\n", "\ndl-pull-quote\n"],
+	dropCap: ["dl-drop-cap\n", "\ndl-drop-cap\n"],
+	imageWithCaption: ["dl-image-with-caption ", "https://link.to/your-image.png Your Caption Here\n"],
+	fullWidthImage: ["dl-image-full-width ", "https://link.to/your-image.png\n"]
+};
+
+// add the DesignLab custom insertTexts to insertTexts
+insertTexts = extend(insertTexts, dlInsertTexts);
 
 var promptTexts = {
 	link: "URL for the link:",
