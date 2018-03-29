@@ -1,5 +1,7 @@
-# SimpleMDE - Markdown Editor (with DesignLab's Showdown Extensions)
+# DesignLab's Custom SimpleMDE - Markdown Editor
 A drop-in JavaScript textarea replacement for writing beautiful and understandable Markdown. The WYSIWYG-esque editor allows users who may be less experienced with Markdown to use familiar toolbar buttons and shortcuts. In addition, the syntax is rendered while editing to clearly show the expected result. Headings are larger, emphasized words are italicized, links are underlined, etc. SimpleMDE is one of the first editors to feature both built-in autosaving and spell checking.
+
+This version uses Showdown instead of Marked to preview the markdown content. We also included buttons for our custom DesignLab Showdown extensions by default.  You must load those extensions via a script tag on your page, we no longer include them in the app.  Without them, you will get a warning in the console when you preview the markdown, and the custom tags will not be rendered out to HTML.  
 
 [**Demo**](https://simplemde.com)
 
@@ -15,19 +17,20 @@ Via [npm](https://www.npmjs.com/package/simplemde).
 npm install simplemde --save
 ```
 
-Via [bower](https://www.bower.io).
+Also get DesignLab Showdown Extensions via [npm](https://www.npmjs.com/package/designlab-showdown-extensions).
 ```
-bower install simplemde --save
+npm install designlab-showdown-extensions --save
 ```
 
-Via [jsDelivr](https://www.jsdelivr.com/).
-
-```HTML
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sparksuite/simplemde-markdown-editor@1/dist/simplemde.min.css">
-<script src="https://cdn.jsdelivr.net/gh/sparksuite/simplemde-markdown-editor@1/dist/simplemde.min.js"></script>
-```
 
 ## Quick start
+Include your script tags for the CSS, Javascript, and DesignLab Showdown Extensions.
+```HTML
+<link rel="stylesheet" href="path/to/simplemde.min.css">
+<script src="path/to/simplemde.min.js"></script>
+<script src="path/to/designlab-showdown-extensions.js"></script>
+```
+
 
 After installing, load SimpleMDE on the first textarea on a page
 
@@ -323,4 +326,4 @@ simplemde.clearAutosavedValue(); // no returned value
 ## How it works
 SimpleMDE began as an improvement of [lepture's Editor project](https://github.com/lepture/editor), but has now taken on an identity of its own. It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
 
-CodeMirror is the backbone of the project and parses much of the Markdown syntax as it's being written. This allows us to add styles to the Markdown that's being written. Additionally, a toolbar and status bar have been added to the top and bottom, respectively. Previews are rendered by [Marked](https://github.com/chjj/marked) using GFM.
+CodeMirror is the backbone of the project and parses much of the Markdown syntax as it's being written. This allows us to add styles to the Markdown that's being written. Additionally, a toolbar and status bar have been added to the top and bottom, respectively. Previews are rendered by [Showdown](https://github.com/showdownjs/showdown) using GFM.
