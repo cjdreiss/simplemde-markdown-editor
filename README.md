@@ -3,7 +3,7 @@ A drop-in JavaScript textarea replacement for writing beautiful and understandab
 
 This version uses Showdown instead of Marked to preview the markdown content. We also included buttons for our custom DesignLab Showdown extensions by default.  You must load those extensions via a script tag on your page, we no longer include them in the app.  Without them, you will get a warning in the console when you preview the markdown, and the custom tags will not be rendered out to HTML.  
 
-[**Demo**](https://simplemde.com)
+[**Click Here to Try a Demo**](https://cjdreiss.github.io/simplemde-markdown-editor/)
 
 [![Preview](http://i.imgur.com/zqWfJwO.png)](https://simplemde.com)
 
