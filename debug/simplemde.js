@@ -1,5 +1,5 @@
 /**
- * simplemde v1.12.0
+ * simplemde v1.12.1
  * Copyright Sparksuite, Inc.
  * @link https://github.com/sparksuite/simplemde-markdown-editor
  * @license MIT
@@ -20825,7 +20825,7 @@ function SimpleMDE(options) {
 }
 
 /**
- * Store the showdown_converter so we don't keep reinitializing it
+ * Store the showdownConverter so we don't keep reinitializing it
  */
 
 SimpleMDE.prototype.showdownConverter = false;
