@@ -23,7 +23,6 @@
   "dependencies": {
     "codemirror": "*",
     "codemirror-spell-checker": "*",
-    "designlab-showdown-extensions": "^0.0.1",
     "showdown": "^1.8.6"
   },
   "devDependencies": {

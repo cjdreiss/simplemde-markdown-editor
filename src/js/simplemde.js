@@ -11,9 +11,7 @@ require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
 var CodeMirrorSpellChecker = require("codemirror-spell-checker");
-// var marked = require("marked");
 var showdown = require("showdown");
-require("designlab-showdown-extensions");
 
 
 // Some variables
@@ -1552,18 +1550,33 @@ function SimpleMDE(options) {
 }
 
 /**
+ * Store the showdownConverter so we don't keep reinitializing it
+ */
+
+SimpleMDE.prototype.showdownConverter = false;
+
+/**
  * Default markdown render.
  */
 SimpleMDE.prototype.markdown = function(text) {
-	if(showdown) {
-		var showdown_converter = new showdown.Converter({
-			extensions: ["designlab"]
-		});
-		showdown_converter.setFlavor("github");
+	if(showdown && !SimpleMDE.prototype.showdownConverter) {
+		try {
+			SimpleMDE.prototype.showdownConverter = new showdown.Converter({
+				extensions: ["designlab"]
+			});
+		} catch(err) {
+			SimpleMDE.prototype.showdownConverter = new showdown.Converter();
+			console.warn("Missing designlab-showdown-extensions.  Cannot preview properly.\n You must have forgotten to include it in a script tag.\n\n", err);
+		}
 
-		// Return
-		return showdown_converter.makeHtml(text);
+		SimpleMDE.prototype.showdownConverter.setFlavor("github");
 	}
+
+	if(SimpleMDE.prototype.showdownConverter) {
+		// Return
+		return SimpleMDE.prototype.showdownConverter.makeHtml(text);
+	}
+
 };
 
 /**

@@ -1862,7 +1862,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":1,"ieee754":16}],4:[function(require,module,exports){
+},{"base64-js":1,"ieee754":15}],4:[function(require,module,exports){
 // Use strict mode (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode)
 "use strict";
 
@@ -1982,7 +1982,7 @@ CodeMirrorSpellChecker.typo;
 
 // Export
 module.exports = CodeMirrorSpellChecker;
-},{"typo-js":18}],5:[function(require,module,exports){
+},{"typo-js":17}],5:[function(require,module,exports){
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: http://codemirror.net/LICENSE
 
@@ -13701,136 +13701,6 @@ if (!CodeMirror.mimeModes.hasOwnProperty("text/html"))
 });
 
 },{"../../lib/codemirror":10}],15:[function(require,module,exports){
-;/*! designlab-showdown-extensions 28-03-2018 */
-(function(){
-/**
- * Showdown's Extension boilerplate
- *
- * A boilerplate from where you can easily build extensions
- * for showdown
- */
-(function (extension) {
-  'use strict';
-
-  // UML - Universal Module Loader
-  // This enables the extension to be loaded in different environments
-  if (typeof showdown !== 'undefined') {
-    // global (browser or nodejs global)
-    extension(showdown);
-  } else if (typeof define === 'function' && define.amd) {
-    // AMD
-    define(['showdown'], extension);
-  } else if (typeof exports === 'object') {
-    // Node, CommonJS-like
-    module.exports = extension(require('showdown'));
-  } else {
-    // showdown was not found so we throw
-    throw Error('Could not find showdown library');
-  }
-
-}(function (showdown) {
-  'use strict';
-
-  //This is the extension code per se
-
-  // Here you have a safe sandboxed environment where you can use "static code"
-  // that is, code and data that is used accros instances of the extension itself
-  // If you have regexes or some piece of calculation that is immutable
-  // this is the best place to put them.
-
-  // The following method will register the extension with showdown
-  showdown.extension('designlab', function () {
-    var row, columnA, columnB,
-      pullQuote, dropCap,
-      profileImage, imageWithCaption, fullWidthImage,
-      generateBlockRegex, generateBlockFilter, generateImageFilter,
-      generateSingleTagRegex, generateSingleTagWithModifier;
-
-    generateBlockRegex = function (block) {
-      return new RegExp('^(' + block + '\\s)([\\s\\S]*?)(\\s' + block + ')\\b', 'gm');
-    };
-
-    generateSingleTagRegex = function (tag) {
-      return new RegExp('^(' + tag + '\\s)([\\S]*)', 'gm');
-    };
-
-    generateSingleTagWithModifier = function (tag) {
-      return new RegExp('^(' + tag + ')\\ *([\\S]*)\\ *([\\ \\S]*)', 'gm');
-    };
-
-    generateBlockFilter = function (regExBlock, className) {
-      return {
-        type: 'lang',
-        filter: function (text, converter, options) {
-          var mainRegex = generateBlockRegex(regExBlock);
-          text = text.replace(mainRegex, function (fullMatch, start, content, end) {
-            content = converter.makeHtml(content);
-            return '\n<div class="' + className + '">' + content + '</div>\n';
-          });
-          return text;
-        }
-      };
-    };
-
-    generateImageFilter = function (regExBlock, className) {
-      return {
-        type: 'lang',
-        filter: function (text, converter, options) {
-          var mainRegex = generateSingleTagRegex(regExBlock);
-          text = text.replace(mainRegex, function (match, tag, content) {
-            // needs to be wrapped in a div or it gets wrapped in a <p>
-            return '\n<div class="' + className + '-container"><img class="' + className + '" src="' + content + '"/></div>\n';
-          });
-          return text;
-        }
-      };
-    };
-
-    columnA = generateBlockFilter('dl-col-a', 'dl-col-a');
-
-    columnB = generateBlockFilter('dl-col-b', 'dl-col-b');
-
-    pullQuote = generateBlockFilter('dl-pull-quote', 'dl-pull-quote');
-
-    dropCap = {
-      type: 'lang',
-      filter: function (text, converter, options) {
-        var mainRegex = /^(dl-drop-cap\s)(\S)([\s\S]*?)(\sdl-drop-cap)\b/gm;
-        text = text.replace(mainRegex, function (fullMatch, start, initialCap, content, end) {
-          content = '<span class="dl-drop-cap">' + initialCap + '</span>' + content;
-          content = converter.makeHtml(content);
-          return '\n<div class="dl-drop-cap-container">' + content + '</div>\n';
-        });
-        return text;
-      }
-    };
-
-    imageWithCaption = {
-      type: 'lang',
-      filter: function (text, converter, options) {
-        var mainRegex = generateSingleTagWithModifier('dl-image-with-caption');
-        text = text.replace(mainRegex, function (match, tag, imgUrl, caption) {
-          // needs to be wrapped in a div or it won't render the img tag
-          caption = converter.makeHtml(caption);
-          return '\n<div class="dl-image-with-caption-container">' +
-            '<img class="dl-image-with-caption" src="' + imgUrl + '"/>' +
-            '<div class="dl-image-caption">' + caption + '</div></div>\n';
-        });
-        return text;
-      }
-    };
-
-    profileImage = generateImageFilter('dl-profile-image', 'dl-profile-image');
-
-    fullWidthImage = generateImageFilter('dl-image-full-width', 'dl-image-full-width');
-
-    return [columnA, columnB, pullQuote, dropCap, profileImage, imageWithCaption, fullWidthImage];
-
-  });
-}));
-}).call(this);
-
-},{"showdown":17}],16:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -13916,7 +13786,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 ;/*! showdown v 1.8.6 - 22-12-2017 */
 (function(){
 /**
@@ -18422,7 +18292,7 @@ if (typeof define === 'function' && define.amd) {
 
 
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 (function (Buffer,__dirname){
 /* globals chrome: false */
 /* globals __dirname: false */
@@ -19356,7 +19226,7 @@ if (typeof module !== 'undefined') {
 	module.exports = Typo;
 }
 }).call(this,require("buffer").Buffer,"/node_modules/typo-js")
-},{"buffer":3,"fs":2}],19:[function(require,module,exports){
+},{"buffer":3,"fs":2}],18:[function(require,module,exports){
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: http://codemirror.net/LICENSE
 
@@ -19402,7 +19272,7 @@ CodeMirror.commands.shiftTabAndUnindentMarkdownList = function (cm) {
 	}
 };
 
-},{"codemirror":10}],20:[function(require,module,exports){
+},{"codemirror":10}],19:[function(require,module,exports){
 /*global require,module*/
 "use strict";
 var CodeMirror = require("codemirror");
@@ -19416,9 +19286,7 @@ require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
 var CodeMirrorSpellChecker = require("codemirror-spell-checker");
-// var marked = require("marked");
 var showdown = require("showdown");
-require("designlab-showdown-extensions");
 
 
 // Some variables
@@ -20957,18 +20825,33 @@ function SimpleMDE(options) {
 }
 
 /**
+ * Store the showdown_converter so we don't keep reinitializing it
+ */
+
+SimpleMDE.prototype.showdownConverter = false;
+
+/**
  * Default markdown render.
  */
 SimpleMDE.prototype.markdown = function(text) {
-	if(showdown) {
-		var showdown_converter = new showdown.Converter({
-			extensions: ["designlab"]
-		});
-		showdown_converter.setFlavor("github");
+	if(showdown && !SimpleMDE.prototype.showdownConverter) {
+		try {
+			SimpleMDE.prototype.showdownConverter = new showdown.Converter({
+				extensions: ["designlab"]
+			});
+		} catch(err) {
+			SimpleMDE.prototype.showdownConverter = new showdown.Converter();
+			console.warn("Missing designlab-showdown-extensions.  Cannot preview properly.\n You must have forgotten to include it in a script tag.\n\n", err);
+		}
 
-		// Return
-		return showdown_converter.makeHtml(text);
+		SimpleMDE.prototype.showdownConverter.setFlavor("github");
 	}
+
+	if(SimpleMDE.prototype.showdownConverter) {
+		// Return
+		return SimpleMDE.prototype.showdownConverter.makeHtml(text);
+	}
+
 };
 
 /**
@@ -21588,5 +21471,5 @@ SimpleMDE.prototype.toTextArea = function() {
 };
 
 module.exports = SimpleMDE;
-},{"./codemirror/tablist":19,"codemirror":10,"codemirror-spell-checker":4,"codemirror/addon/display/fullscreen.js":5,"codemirror/addon/display/placeholder.js":6,"codemirror/addon/edit/continuelist.js":7,"codemirror/addon/mode/overlay.js":8,"codemirror/addon/selection/mark-selection.js":9,"codemirror/mode/gfm/gfm.js":11,"codemirror/mode/markdown/markdown.js":12,"codemirror/mode/xml/xml.js":14,"designlab-showdown-extensions":15,"showdown":17}]},{},[20])(20)
+},{"./codemirror/tablist":18,"codemirror":10,"codemirror-spell-checker":4,"codemirror/addon/display/fullscreen.js":5,"codemirror/addon/display/placeholder.js":6,"codemirror/addon/edit/continuelist.js":7,"codemirror/addon/mode/overlay.js":8,"codemirror/addon/selection/mark-selection.js":9,"codemirror/mode/gfm/gfm.js":11,"codemirror/mode/markdown/markdown.js":12,"codemirror/mode/xml/xml.js":14,"showdown":16}]},{},[19])(19)
 });
