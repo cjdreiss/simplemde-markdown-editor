@@ -1,5 +1,5 @@
 /**
- * simplemde v1.12.1
+ * simplemde v1.12.2
  * Copyright Sparksuite, Inc.
  * @link https://github.com/sparksuite/simplemde-markdown-editor
  * @license MIT
@@ -19287,7 +19287,7 @@ require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
 var CodeMirrorSpellChecker = require("codemirror-spell-checker");
 var showdown = require("showdown");
-window.showdown = showdown;
+window.showdown = showdown; //so other scripts can use showown globally
 
 
 // Some variables
