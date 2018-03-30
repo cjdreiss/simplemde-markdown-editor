@@ -1,5 +1,7 @@
-# DesignLab's Custom SimpleMDE - Markdown Editor
+# DesignLab SimpleMDE - Markdown Editor
 A drop-in JavaScript textarea replacement for writing beautiful and understandable Markdown. The WYSIWYG-esque editor allows users who may be less experienced with Markdown to use familiar toolbar buttons and shortcuts. In addition, the syntax is rendered while editing to clearly show the expected result. Headings are larger, emphasized words are italicized, links are underlined, etc. SimpleMDE is one of the first editors to feature both built-in autosaving and spell checking.
+
+The originale SimpleMDE project was no longer being supported.  DesignLab had a need for adding extended functionality and support for Showdown and its extensions.
 
 This version uses Showdown instead of Marked to preview the markdown content. We also included buttons for our custom DesignLab Showdown extensions by default.  You must load those extensions via a script tag on your page, we no longer include them in the app.  Without them, you will get a warning in the console when you preview the markdown, and the custom tags will not be rendered out to HTML.  
 
@@ -12,10 +14,9 @@ WYSIWYG editors that produce HTML are often complex and buggy. Markdown solves t
 
 ## Install
 
-Via [npm](https://www.npmjs.com/package/simplemde).
-```
-npm install simplemde --save
-```
+~~Via [npm](https://www.npmjs.com/package/simplemde).~~
+
+New NPM Package Coming Soon... For now, download master and get the files from `/dist`.
 
 Also get DesignLab Showdown Extensions via [npm](https://www.npmjs.com/package/designlab-showdown-extensions).
 ```
@@ -325,5 +326,7 @@ simplemde.clearAutosavedValue(); // no returned value
 
 ## How it works
 SimpleMDE began as an improvement of [lepture's Editor project](https://github.com/lepture/editor), but has now taken on an identity of its own. It is bundled with [CodeMirror](https://github.com/codemirror/codemirror) and depends on [Font Awesome](http://fontawesome.io).
+
+DesignLab SimpleMDE is a fork of the original which is no longer maintained.
 
 CodeMirror is the backbone of the project and parses much of the Markdown syntax as it's being written. This allows us to add styles to the Markdown that's being written. Additionally, a toolbar and status bar have been added to the top and bottom, respectively. Previews are rendered by [Showdown](https://github.com/showdownjs/showdown) using GFM.
