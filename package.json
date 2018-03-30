@@ -9,16 +9,16 @@
     "javascript",
     "wysiwyg"
   ],
-  "homepage": "https://github.com/sparksuite/simplemde-markdown-editor",
+  "homepage": "https://github.com/cjdreiss/designlab-simplemde",
   "main": "./src/js/simplemde.js",
   "license": "MIT",
-  "company": "Sparksuite, Inc.",
+  "company": "DesignLab",
   "author": {
-    "name": "Wes Cossick",
-    "url": "http://www.WesCossick.com"
+    "name": "DesignLab",
+    "url": "https://trydesignlab.com"
   },
   "bugs": {
-    "url": "https://github.com/sparksuite/simplemde-markdown-editor/issues"
+    "url": "https://github.com/cjdreiss/designlab-simplemde/issues"
   },
   "dependencies": {
     "codemirror": "*",
@@ -43,6 +43,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sparksuite/simplemde-markdown-editor"
+    "url": "https://github.com/cjdreiss/designlab-simplemde"
   }
 }
