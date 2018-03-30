@@ -23,13 +23,13 @@ var banner = ["/**",
 	""].join("\n");
 
 gulp.task("prettify-js", [], function() {
-	return gulp.src("./src/js/simplemde.js")
+	return gulp.src("./src/js/designlab-simplemde.js")
 		.pipe(prettify({js: {brace_style: "collapse", indent_char: "\t", indent_size: 1, max_preserve_newlines: 3, space_before_conditional: false}}))
 		.pipe(gulp.dest("./src/js"));
 });
  
 gulp.task("prettify-css", [], function() {
-	return gulp.src("./src/css/simplemde.css")
+	return gulp.src("./src/css/designlab-simplemde.css")
 		.pipe(prettify({css: {indentChar: "\t", indentSize: 1}}))
 		.pipe(gulp.dest("./src/css"));
 });
@@ -43,13 +43,13 @@ gulp.task("lint", ["prettify-js"], function() {
 });
 
 function taskBrowserify(opts) {
-	return browserify("./src/js/simplemde.js", opts)
+	return browserify("./src/js/designlab-simplemde.js", opts)
 		.bundle();
 }
 
 gulp.task("browserify:debug", ["lint"], function() {
 	return taskBrowserify({debug:true, standalone:"SimpleMDE"})
-		.pipe(source("simplemde.debug.js"))
+		.pipe(source("designlab-simplemde.debug.js"))
 		.pipe(buffer())
 		.pipe(header(banner, {pkg: pkg}))
 		.pipe(gulp.dest("./debug/"));
@@ -57,17 +57,17 @@ gulp.task("browserify:debug", ["lint"], function() {
 
 gulp.task("browserify", ["lint"], function() {
 	return taskBrowserify({standalone:"SimpleMDE"})
-		.pipe(source("simplemde.js"))
+		.pipe(source("designlab-simplemde.js"))
 		.pipe(buffer())
 		.pipe(header(banner, {pkg: pkg}))
 		.pipe(gulp.dest("./debug/"));
 });
 
 gulp.task("scripts", ["browserify:debug", "browserify", "lint"], function() {
-	var js_files = ["./debug/simplemde.js"];
+	var js_files = ["./debug/designlab-simplemde.js"];
 	
 	return gulp.src(js_files)
-		.pipe(concat("simplemde.min.js"))
+		.pipe(concat("designlab-simplemde.min.js"))
 		.pipe(uglify())
 		.pipe(buffer())
 		.pipe(header(banner, {pkg: pkg}))
@@ -82,12 +82,12 @@ gulp.task("styles", ["prettify-css"], function() {
 	];
 	
 	return gulp.src(css_files)
-		.pipe(concat("simplemde.css"))
+		.pipe(concat("designlab-simplemde.css"))
 		.pipe(buffer())
 		.pipe(header(banner, {pkg: pkg}))
 		.pipe(gulp.dest("./debug/"))
 		.pipe(minifycss())
-		.pipe(rename("simplemde.min.css"))
+		.pipe(rename("designlab-simplemde.min.css"))
 		.pipe(buffer())
 		.pipe(header(banner, {pkg: pkg}))
 		.pipe(gulp.dest("./dist/"));

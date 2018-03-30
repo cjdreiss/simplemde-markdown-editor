@@ -26,8 +26,8 @@ npm install designlab-showdown-extensions --save
 ## Quick start
 Include your script tags for the CSS, Javascript, and DesignLab Showdown Extensions.
 ```HTML
-<link rel="stylesheet" href="path/to/simplemde.min.css">
-<script src="path/to/simplemde.min.js"></script>
+<link rel="stylesheet" href="path/to/designlab-simplemde.min.css">
+<script src="path/to/designlab-simplemde.min.js"></script>
 <script src="path/to/designlab-showdown-extensions.js"></script>
 ```
 
